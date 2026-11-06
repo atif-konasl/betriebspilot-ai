@@ -1,0 +1,16 @@
+FROM qwen2.5:7b-instruct-q4_K_M
+
+# 8k context window to handle multi-page German industrial quotes and delivery notes
+PARAMETER num_ctx 8192
+
+# Deterministic zero-temperature output for GoBD-compliant ERP data extraction
+PARAMETER temperature 0.0
+
+# Stop tokens
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+
+# System prompt enforcing strict German ERP extraction and packaging math
+SYSTEM """Du bist BetriebsPilot AI, ein autonomer Back-Office-Agent für deutsche ERP-Systeme (SAP Business One, Sage 100, proALPHA).
+Deine Aufgabe ist die deterministische Extraktion von Bestellungen, Reklamationen und Rechnungsanfragen.
+Erfinde NIEMALS Artikelnummern, Preise oder Steuersätze. Halte dich strikt an die vorgegebenen Schemas."""
