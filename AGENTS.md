@@ -136,15 +136,23 @@ flowchart LR
   - `generate_legacy_file`: Generate OpenTRANS XML / SAP B1 JSON.
 - [x] Compile cyclic state machine in `src/orchestrator/graph.py`.
 
-### Phase 4: Remote FastAPI Agent Server (Current)
-- [ ] Implement `src/api/server.py`:
+### Phase 4: Remote FastAPI Agent Server (Completed)
+- [x] Implement `src/api/schemas.py`: Pydantic v2 schemas for requests, responses, and Swagger documentation.
+- [x] Implement `src/api/server.py`:
   - `POST /api/v1/process-input`: Ingest PDF/Email/SMS, run LangGraph, return state.
   - `POST /api/v1/approve-and-export`: Accept human corrections, update `erp_customer_sku_map`, return XML/JSON.
   - `GET /api/v1/erp-catalog/search`: Manual catalog vector search for clerk overrides.
   - `GET /api/v1/stream-trace/{task_id}`: Real-time SSE streaming of LangGraph node execution.
+  - Interactive Swagger UI (`/docs`) and ReDoc (`/redoc`) API documentation.
 
-### Phase 5: Desktop Client (Tauri v2 / React)
-- [ ] Build 3-column UI: Input Queue $\rightarrow$ Split-Screen Review $\rightarrow$ Legacy ERP Output Preview.
+### Phase 5: Desktop Client (Tauri v2 / React) (Current)
+- [ ] Initialize desktop client package & frontend dependencies (Vite + React + TypeScript + Tailwind CSS).
+- [ ] Implement `src/api/agentClient.ts`: TypeScript API SDK connecting to the FastAPI agent backend with SSE streaming.
+- [ ] Build 3-column UI:
+  - Input Queue (`OmnichannelInput.tsx`): Drag-and-drop PDF, paste Email, or simulate SMS/WhatsApp.
+  - Real-time Execution (`AgentLiveTrace.tsx`): Live LangGraph step visualization via SSE.
+  - Split-Screen Review (`SplitScreenReview.tsx`): Original Document vs. editable ERP rows with confidence badges and ATP stock indicators.
+  - Legacy ERP Output (`ErpExportPanel.tsx`): 1-Click export to local ERP hotfolder (`C:\ERP_Import\` or `/tmp/erp_import`).
 - [ ] Native hotfolder export: Silent 1-click write to local ERP import folders (`C:\ERP_Import\` or `/tmp/erp_import`).
 
 ---

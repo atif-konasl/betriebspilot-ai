@@ -6,6 +6,14 @@ Welcome to the internal engineering wiki for **BetriebsPilot AI**. This knowledg
 
 ## 📚 Knowledge Base Index
 
+### 🚀 Getting Started & Hands-On Playground
+* **[Hands-On Guide: Playing, Testing & Debugging the Backend](getting-started/hands-on-backend-guide.md)**
+  - Mental model of the autonomous back-office agent.
+  - Complete code map of `agent-backend/src/` (what runs with an LLM vs. 100% deterministic Python).
+  - Running FastAPI & interactive Swagger UI playground scenarios (High-confidence auto-export, Human review, 1-Click approval, Semantic vector search).
+  - Pytest commands, selective testing (`-k`), stdout logging (`-s`), and debugging with `breakpoint()`.
+  - Direct database and Qdrant vector exploration.
+
 ### 1. Vector Database & Hybrid RAG Architecture
 * **[How Vector Search Works Under the Hood](vector-database/how-it-works.md)**
   - Foundational primer on high-dimensional vectors (384 dimensions) and embeddings.
@@ -20,7 +28,7 @@ Welcome to the internal engineering wiki for **BetriebsPilot AI**. This knowledg
   - Human-in-the-Loop confidence thresholds and self-learning alias loop.
 
 ### 2. Python Engineering & Agent Architecture
-* **[Ingestion Parser: Python Engineering & Architectural Deep-Dive](python/ingestion-parser-deep-dive.md)**
+* **[Ingestion Parser: Python Engineering & Architectural Deep-Dive](ingestion/ingestion-parser-deep-dive.md)**
   - Modern Python 3.11 patterns: Type Hinting, Generics, and static safety.
   - Pydantic v2: Data contracts, runtime validation, and `@field_validator` for German decimal numbers.
   - The Instructor Pattern: Forcing LLMs into deterministic structured output with automatic validation retries.
