@@ -121,9 +121,9 @@ flowchart LR
 - [x] Documented architectural decisions in `docs/ADRs/`.
 - [x] Executed `seed_german_erp.py` populating 10 German customers, 172 industrial SKUs, stock levels, Tier 1 SKU mappings, 24-month order history, and Qdrant catalog embeddings.
 
-### Phase 2: Ingestion & 3-Tier Cascade RAG (Current)
-- [ ] Implement `src/llm/client.py`: Multi-provider LLM client (Ollama / OpenAI / Groq) with Instructor integration.
-- [ ] Implement `src/ingestion/parser.py`: Multi-channel parser extracting structured line items from German PDF orders, emails, and SMS.
+### Phase 2: Ingestion & 3-Tier Cascade RAG (In Progress)
+- [x] Implement `src/llm/client.py`: Multi-provider LLM client (Ollama / OpenAI / Groq) with Instructor integration.
+- [x] Implement `src/ingestion/parser.py`: Multi-channel parser extracting structured line items from German PDF orders, emails, and SMS.
 - [ ] Implement `src/rag/hybrid_retriever.py`: 3-Tier Cascade SKU resolver + deterministic packaging math.
 - [ ] Milestone Check: Pass messy German order texts/PDFs and verify exact SKU match + packaging conversion.
 
