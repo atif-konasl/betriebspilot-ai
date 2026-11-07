@@ -393,7 +393,7 @@ def index_qdrant_catalog(articles: List[Dict[str, Any]]):
         return
 
     logger.info(f"Connecting to Qdrant at {QDRANT_HOST}:{QDRANT_PORT}...")
-    client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
+    client = QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT, check_compatibility=False)
 
     # Initialize FastEmbed model (BAAI/bge-small-en-v1.5 has 384 dimensions and fast CPU/GPU inference)
     embedding_model_name = "BAAI/bge-small-en-v1.5"

@@ -121,22 +121,22 @@ flowchart LR
 - [x] Documented architectural decisions in `docs/ADRs/`.
 - [x] Executed `seed_german_erp.py` populating 10 German customers, 172 industrial SKUs, stock levels, Tier 1 SKU mappings, 24-month order history, and Qdrant catalog embeddings.
 
-### Phase 2: Ingestion & 3-Tier Cascade RAG (In Progress)
+### Phase 2: Ingestion & 3-Tier Cascade RAG (Completed)
 - [x] Implement `src/llm/client.py`: Multi-provider LLM client (Ollama / OpenAI / Groq) with Instructor integration.
 - [x] Implement `src/ingestion/parser.py`: Multi-channel parser extracting structured line items from German PDF orders, emails, and SMS.
-- [ ] Implement `src/rag/hybrid_retriever.py`: 3-Tier Cascade SKU resolver + deterministic packaging math.
-- [ ] Milestone Check: Pass messy German order texts/PDFs and verify exact SKU match + packaging conversion.
+- [x] Implement `src/rag/hybrid_retriever.py`: 3-Tier Cascade SKU resolver + deterministic packaging math.
+- [x] Milestone Check: Pass messy German order texts/PDFs and verify exact SKU match + packaging conversion.
 
-### Phase 3: LangGraph Multi-Agent Orchestrator
-- [ ] Define `src/orchestrator/state.py`: `AgentState` TypedDict with line items, confidence scores, ATP stock, and errors.
-- [ ] Implement `src/orchestrator/nodes.py`:
+### Phase 3: LangGraph Multi-Agent Orchestrator (Completed)
+- [x] Define `src/orchestrator/state.py`: `AgentState` TypedDict with line items, confidence scores, ATP stock, and errors.
+- [x] Implement `src/orchestrator/nodes.py`:
   - `classify_intent`: Orders, Invoices, RMAs, or Stock checks.
   - `execute_rag_and_stock_check`: 3-Tier cascade + inventory ATP check.
   - `confidence_gate`: Route to auto-export vs. human review.
   - `generate_legacy_file`: Generate OpenTRANS XML / SAP B1 JSON.
-- [ ] Compile cyclic state machine in `src/orchestrator/graph.py`.
+- [x] Compile cyclic state machine in `src/orchestrator/graph.py`.
 
-### Phase 4: Remote FastAPI Agent Server
+### Phase 4: Remote FastAPI Agent Server (Current)
 - [ ] Implement `src/api/server.py`:
   - `POST /api/v1/process-input`: Ingest PDF/Email/SMS, run LangGraph, return state.
   - `POST /api/v1/approve-and-export`: Accept human corrections, update `erp_customer_sku_map`, return XML/JSON.

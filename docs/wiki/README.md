@@ -12,6 +12,12 @@ Welcome to the internal engineering wiki for **BetriebsPilot AI**. This knowledg
   - Sub-word tokenization and ONNX Runtime performance optimizations.
   - HNSW graph indexing ($\mathcal{O}(\log N)$ nearest neighbor search).
   - The "Danger Zone": Why pure dense vectors confuse `M8x30` with `M8x40` and how Qdrant's BM25 hybrid search solves it.
+* **[3-Tier Cascade SKU Resolution & Packaging Math](rag/three-tier-cascade.md)**
+  - Tier 1: Deterministic Direct Alias Mapping (`erp_customer_sku_map`).
+  - Tier 2: 24-Month Customer Order History Lookup (`erp_orders` + `erp_order_items`).
+  - Tier 3: Qdrant Hybrid Semantic Search over the master ERP catalog.
+  - Deterministic packaging math (converting *Kartons* & *Dosen* into base units *STK*).
+  - Human-in-the-Loop confidence thresholds and self-learning alias loop.
 
 ### 2. Python Engineering & Agent Architecture
 * **[Ingestion Parser: Python Engineering & Architectural Deep-Dive](python/ingestion-parser-deep-dive.md)**
@@ -19,6 +25,16 @@ Welcome to the internal engineering wiki for **BetriebsPilot AI**. This knowledg
   - Pydantic v2: Data contracts, runtime validation, and `@field_validator` for German decimal numbers.
   - The Instructor Pattern: Forcing LLMs into deterministic structured output with automatic validation retries.
   - Multi-channel ingestion pipeline: Hybrid PDF processing (`pypdf` + `Docling`), email sanitization, and chat normalization.
+* **[LangGraph State Machine & Multi-Agent Orchestration](orchestrator/langgraph-workflow.md)**
+  - Stateful cyclic workflows and why linear chains fail in German legacy ERPs.
+  - `TypedDict` blackboard state architecture across graph nodes.
+  - Real-time Available-to-Promise (ATP) inventory check ($\text{physical} - \text{reserved} + \text{incoming}$).
+  - Multi-tier Confidence Gate and Human-in-the-Loop (HITL) autonomy guardrails.
+* **[FastAPI Agent Server & Real-Time SSE Streaming](api/fastapi-server-architecture.md)**
+  - Client-server bridge between remote FastAPI agent and local Tauri desktop app.
+  - Multipart uploads handling both digital PDFs and raw email text uniformly.
+  - Server-Sent Events (SSE) streaming live LangGraph node traces.
+  - One-click approval endpoint triggering Tier 1 self-learning alias loop.
 
 ---
 
