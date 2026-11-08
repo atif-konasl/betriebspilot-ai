@@ -145,15 +145,15 @@ flowchart LR
   - `GET /api/v1/stream-trace/{task_id}`: Real-time SSE streaming of LangGraph node execution.
   - Interactive Swagger UI (`/docs`) and ReDoc (`/redoc`) API documentation.
 
-### Phase 5: Desktop Client (Tauri v2 / React) (Current)
-- [ ] Initialize desktop client package & frontend dependencies (Vite + React + TypeScript + Tailwind CSS).
-- [ ] Implement `src/api/agentClient.ts`: TypeScript API SDK connecting to the FastAPI agent backend with SSE streaming.
-- [ ] Build 3-column UI:
+### Phase 5: Desktop Client (Tauri v2 / React) (Completed)
+- [x] Initialize desktop client package & frontend dependencies (Vite + React + TypeScript + Tailwind CSS).
+- [x] Implement `src/api/agentClient.ts`: TypeScript API SDK connecting to the FastAPI agent backend with SSE streaming.
+- [x] Build 3-column UI:
   - Input Queue (`OmnichannelInput.tsx`): Drag-and-drop PDF, paste Email, or simulate SMS/WhatsApp.
   - Real-time Execution (`AgentLiveTrace.tsx`): Live LangGraph step visualization via SSE.
   - Split-Screen Review (`SplitScreenReview.tsx`): Original Document vs. editable ERP rows with confidence badges and ATP stock indicators.
   - Legacy ERP Output (`ErpExportPanel.tsx`): 1-Click export to local ERP hotfolder (`C:\ERP_Import\` or `/tmp/erp_import`).
-- [ ] Native hotfolder export: Silent 1-click write to local ERP import folders (`C:\ERP_Import\` or `/tmp/erp_import`).
+- [x] Native hotfolder export: Silent 1-click write to local ERP import folders (`C:\ERP_Import\` or `/tmp/erp_import`).
 
 ---
 

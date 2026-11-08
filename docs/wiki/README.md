@@ -44,6 +44,13 @@ Welcome to the internal engineering wiki for **BetriebsPilot AI**. This knowledg
   - Server-Sent Events (SSE) streaming live LangGraph node traces.
   - One-click approval endpoint triggering Tier 1 self-learning alias loop.
 
+### 3. Desktop Client & Hotfolder Integration
+* **[Desktop Client: Architecture & Implementation Plan](desktop-client/architecture-and-implementation-plan.md)**
+  - Why legacy German ERPs require a desktop hotfolder writer (`C:\ERP_Import\` or `/tmp/erp_import`).
+  - High-density 3-column cockpit design (`OmnichannelInput`, `AgentLiveTrace`, `SplitScreenReview`, `ErpExportPanel`).
+  - Shared TypeScript data contracts and live Server-Sent Events (SSE) streaming.
+  - 1-Click human approval and database self-learning loop.
+
 ---
 
 ## 🏛️ Related Architectural Documents
