@@ -10,8 +10,10 @@ from typing import Type, TypeVar, List, Dict, Any, Optional, Literal
 from pathlib import Path
 
 import httpx
+import openai
 from openai import OpenAI
 import instructor
+from instructor.core import InstructorRetryException
 from pydantic import BaseModel, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -57,7 +59,7 @@ class LLMSettings(BaseSettings):
         validation_alias="OLLAMA_BASE_URL"
     )
     ollama_model: str = Field(
-        default="qwen2.5:7b-instruct-q4_K_M",
+        default="qwen2.5:7b",
         validation_alias="OLLAMA_MODEL"
     )
     
@@ -213,7 +215,14 @@ class LLMClient:
                 msg += f" Ensure Ollama is running at {self.settings.ollama_base_url} (run 'ollama serve' or check Docker)."
             raise LLMConnectionError(msg) from e
 
-        except instructor.exceptions.InstructorRetryException as e:
+        except openai.NotFoundError as e:
+            msg = f"Model '{self.model_name}' was not found on provider '{self.provider}'."
+            if self.provider == "ollama":
+                msg += f" Please pull the model first using 'ollama pull {self.model_name}' or check OLLAMA_MODEL in .env."
+            logger.error(msg)
+            raise LLMConfigurationError(msg) from e
+
+        except InstructorRetryException as e:
             raise LLMExtractionError(
                 f"Failed to extract valid {response_model.__name__} schema after {retries} retries: {e}"
             ) from e
